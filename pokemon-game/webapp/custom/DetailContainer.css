@@ -1,0 +1,32 @@
+.smod-ux-detail-container {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    height: 100%;
+}
+@media (min-width: 1600px) {
+    .smod-ux-detail-container {
+        width: 47%;
+    }
+}
+
+@media (max-width: 749px) {
+    .smod-ux-detail-container {
+        height: auto;
+    }
+}
+
+.smod-ux-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.smod-ux-detail-container.hard {
+    height: auto !important;
+}

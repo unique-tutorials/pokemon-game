@@ -1,0 +1,17 @@
+<mvc:View controllerName="com.pokemon.ux.pokemongame.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:custom="com.pokemon.ux.pokemongame.custom">
+    
+    <Page id="page" title="{i18n>title}" class="lmsMainPage sapUiResponsiveContentPadding">
+        <content>
+            <custom:CardContainer>
+                <custom:UsernameInput id="usernameInput" placeholder="Nıck-Name ?"/>
+                <custom:DifficultySelect id="difficultySelect"/>
+                <custom:StartButton text="Start" press=".onStartGame"/>
+                <custom:ScoreSortButton text="Scores" press=".onShowScoreboard"/>
+            </custom:CardContainer>
+        </content>
+    </Page>
+</mvc:View>

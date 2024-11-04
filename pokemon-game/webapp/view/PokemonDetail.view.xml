@@ -1,0 +1,21 @@
+<mvc:View controllerName="com.pokemon.ux.pokemongame.controller.PokemonDetail"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:custom="com.pokemon.ux.pokemongame.custom">
+
+    <Page id="page" title="{i18n>title}" class="lmsMainPageDetail sapUiResponsiveContentPadding">
+        <content>
+               <custom:DetailContainer>
+                   <custom:items>
+                    <custom:CTimer id="gameTimer"  />
+                    <custom:Board id="pokemonBoard" class="sapUiSmallMargin" visible="false"/>
+                    <!-- <custom:Card  /> -->
+                    <!-- <VBox id="scoreboard"/> -->
+                     <!-- <Button text="Home" icon="sap-icon://arrow-left" type="Accept" press=".onNavBack" /> -->
+                   </custom:items>
+               </custom:DetailContainer>
+              
+        </content>
+    </Page>
+</mvc:View>

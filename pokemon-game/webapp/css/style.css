@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+/* .sapUiSizeCompact .sapMPageWithHeader>section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+/* body {
+    cursor: url('../images/icons8-charmander-100.png'), auto; 
+} */
+.dialogTitle {
+    text-align: center;
+    font-weight: bold;
+    width: 100%; 
+}
+
+.customText {
+    padding: 20px; 
+    text-align: center; 
+}
+.sapMBarTitleAlignAuto .sapMBarPH {
+    background-color: rgba(255, 255, 255, 0.3); 
+    backdrop-filter: blur(1px);
+}
+
+.pokemon-grid {
+    display: grid;
+    gap: 10px;
+}
+
+@media screen and (min-width: 1024px) {
+    .pokemonBoard{
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media screen and (max-width: 1023px) {
+    .pokemonBoard {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .pokemonBoard {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+.matched {
+    opacity: 0.8; 
+    pointer-events: none;
+}
+.paused {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none; 
+}
+.pokemon-timer {
+    background-color: aqua;
+    width: 200px;
+    border-radius: 10px;
+}
+.pokemonBoard {
+    padding: 0 0 20px;
+    display: grid;
+    gap: 1.2rem;
+    margin: auto;
+    /* width: 60%; */
+    width: 100%;
+}
+
+.lmsMainPage .sapMPageEnableScrolling::after {
+    background: url(../images/background-1.jpeg) center/cover !important;
+    background-repeat: no-repeat !important;
+    content: "";
+    /* opacity: .6!important; */
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute !important;
+    z-index: -1;
+    background-size: cover !important;
+    background-position: center !important;
+    height: 100% !important;
+    width: 100% !important;
+}
+.lmsMainPageDetail .sapMPageEnableScrolling::after {
+    background: url(../images/background-1.jpeg) center/cover !important;
+    background-repeat: no-repeat !important;
+    content: "";
+    /* opacity: .7!important; */
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute !important;
+    z-index: -1;
+    background-size: cover !important;
+    background-position: center !important;
+    height: 100% !important;
+    width: 100% !important;
+}
