@@ -63,7 +63,8 @@ sap.ui.define([
             });
            
             var selectedPokemons = this._selectPokemons(difficulty);
-        
+            console.log("Yeniden başlat gelen pokemonlar:" , selectedPokemons);
+            this._renderPokemonBoard(selectedPokemons);
         },
         
         
@@ -80,15 +81,32 @@ sap.ui.define([
             });
             MessageToast.show("The game continues..."); 
         },
-        
-        
+
         _onRouteMatched: function (oEvent) {
+        
+            // Sayfa yüklendiğinde verileri sıfırlayın
+            var oModel = this.getOwnerComponent().getModel("pokemon");
+          
+            // Tüm gerekli verileri temizleyin
+            oModel.setProperty("/selectedCards", []);
+            oModel.setProperty("/currentDifficulty", null);
+            
+            // Oyun tahtasındaki kartları temizleyin
+            var gameArea = this.byId("pokemonBoard");
+            if (gameArea) {
+                gameArea.removeAllItems();
+              
+            }
+            
+            // Timer'ı sıfırlayın
+            this._initializeTimer();
+          
+            // Difficulty parametresini alıp, başlangıç ayarlarını yapın
             var difficulty = oEvent.getParameter("arguments").difficulty;
-             this.setDifficulty(difficulty); 
-            var oModel = this.getOwnerComponent().getModel("pokemon"); 
+            this.setDifficulty(difficulty); 
             this.getView().setModel(oModel); 
             this._startGame(difficulty);
-            this._resetCards(difficulty);
+            
         },
 
         _initializeTimer: function () {
@@ -98,12 +116,14 @@ sap.ui.define([
         },
 
         _startGame: function (difficulty) {
-          
+          debugger;
             if (!this.getView().getModel("pokemon").getProperty("/currentDifficulty")) {
                 this.getView().getModel("pokemon").setProperty("/currentDifficulty", difficulty);
             }
 
-            this.getView().byId("pokemonBoard").removeAllItems();
+            // this.getView().byId("pokemonBoard").removeAllItems();
+            var gameArea = this.byId("pokemonBoard");
+            gameArea.removeAllItems();
         
             MessageToast.show("The game begins...");
             this.getView().byId("gameTimer").startTimer();
@@ -112,6 +132,7 @@ sap.ui.define([
             this.getView().byId("pokemonBoard").setVisible(true);
         },
         _selectPokemons: function (difficulty) {
+            debugger;
             var pokemons = this.getView().getModel("pokemon").getProperty("/pokemonData");
             var count = difficulty === "easy" ? 4 : difficulty === "medium" ? 6 : 8;
             var selectedPokemons = [];
@@ -128,29 +149,30 @@ sap.ui.define([
         },
 
         _renderPokemonBoard: function (selectedPokemons) {
+            debugger;
             var oBoard = this.getView().byId("pokemonBoard");
-             
-            //Sıfırla ?
-            oBoard.removeAllItems(); 
-
-            console.log("Seçilen Pokémonlar:", selectedPokemons); 
-
-            if (oBoard instanceof com.pokemon.ux.pokemongame.custom.Board) {
-                oBoard.removeAllItems(); 
-            } else {
-                console.error("pokemonBoard kontrolü bir Board kontrolü değil");
-                return; 
+     
+            while (oBoard.getItems().length > 0) {
+                oBoard.removeItem(oBoard.getItems()[0]);
             }
-
+            oBoard.destroyItems();  
+        
+            console.log("Oyun başladığında Seçilen Pokémonlar:", selectedPokemons);
+      
+        
+         
             selectedPokemons.sort(() => Math.random() - 0.5);
+  
             selectedPokemons.forEach(pokemon => {
+                debugger;
                 var oCard = new Card({
                     closedImageUrl: "../images/pokeball.svg",
                     openImageUrl: pokemon.imageUrl,
-                    // pokemonTitle: pokemon.name,
                     press: (oEvent) => this._onCardClick(pokemon, oEvent)
                 });
+        
                 oBoard.addItem(oCard);
+
             });
             
         },
@@ -223,6 +245,12 @@ sap.ui.define([
             this._showCompletionDialog(formattedScore);
         
             this._saveScore(formattedScore); 
+
+            setTimeout(function () {
+                var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+                 oRouter.navTo("RouteView1", {}, true);
+                location.reload();
+            }.bind(this), 3000);
         },
         onNavBack: function () {
             var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
@@ -253,15 +281,6 @@ sap.ui.define([
                     ]
                 }),
                 content: oContent,
-                endButton: new sap.m.Button({
-                    text: "Home",
-                    icon: "sap-icon://home",
-                    type: "Accept",
-                    press: function () {
-                   
-                        this.onNavBack();
-                    }.bind(this)
-                }),
                 afterClose: function () {
                     oDialog.destroy();
                 }
