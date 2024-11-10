@@ -225,9 +225,9 @@ sap.ui.define([
             this._saveScore(formattedScore); 
         },
         onNavBack: function () {
-    
-            var oRouter = this.getOwnerComponent().getRouter();
-            oRouter.navTo("RouteView1");
+            var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+            oRouter.navTo("RouteView1", {}, true); 
+            location.reload(); 
         },
         
         _showCompletionDialog: function (formattedScore) {
