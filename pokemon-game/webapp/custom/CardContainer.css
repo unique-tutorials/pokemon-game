@@ -31,7 +31,8 @@
 
 @media (max-width: 479px) {
     .smod-ux-card-container {
-        width: 340px;
+        width: 90%;
+        margin: 0 20px;
     }
 }
 @media (min-width: 480px) {

@@ -6,6 +6,7 @@
     align-items: center;
     margin: auto;
     height: 100%;
+   
 }
 @media (min-width: 1600px) {
     .smod-ux-detail-container {
@@ -25,14 +26,15 @@
     justify-content: center;
     align-items: flex-start;
     gap: 10px;
+   
 }
-
 .smod-ux-detail-container.hard {
     height: auto !important;
 }
 .smod-ux-detail-container.medium {
     height: auto !important;
 }
+
 .customDetailContainerClass {
     overflow-y: auto; 
     overflow-x: hidden; 

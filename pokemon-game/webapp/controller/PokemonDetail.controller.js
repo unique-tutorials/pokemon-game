@@ -22,14 +22,15 @@ sap.ui.define([
             oGameTimer.attachEvent("restartGame", this._onRestartGame.bind(this));
         },
         setDifficulty: function (difficulty) {
-            var container = document.querySelector('.smod-ux-detail-container');
+            var container = this.byId("smodUxDetailContainer");
             if (container) {
-                container.classList.remove('hard', 'medium');
+                container.removeStyleClass("hard");
+                container.removeStyleClass("medium");
         
                 if (difficulty === 'hard') {
-                    container.classList.add('hard');
+                    container.addStyleClass('hard');
                 } else if (difficulty === 'medium') {
-                    container.classList.add('medium');
+                    container.addStyleClass('medium');
                 }
             }
         },
@@ -154,10 +155,8 @@ sap.ui.define([
             var oContainer = this.byId("pokemonBoard");
             this.getView().invalidate(); 
         
-            console.log("Oyun başladığında Seçilen Pokémonlar:", selectedPokemons);
-      
-        
-         
+            console.log("Oyun başladığında Seçilen Pokemonlar:", selectedPokemons);
+
             selectedPokemons.sort(() => Math.random() - 0.5);
   
             selectedPokemons.forEach(pokemon => {
