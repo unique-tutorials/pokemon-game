@@ -104,6 +104,8 @@ sap.ui.define(["sap/ui/core/Control"], function (Control) {
         this.setSeconds(0);
         this.setProperty("_started", false); 
         this.fireRestartGame();
+  
+       
     },
 
   

@@ -9,7 +9,6 @@ sap.ui.define([
                 items: { type: "com.pokemon.ux.pokemongame.custom.Card", multiple: true, singularName: "item" }
             }
         },
-
         removeAllItems: function () {
             this.destroyItems();
         },
