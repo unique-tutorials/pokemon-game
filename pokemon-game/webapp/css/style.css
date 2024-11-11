@@ -15,9 +15,12 @@
 .sapMPageHeader {
     /* background: url(../images/container_bg.png) center !important; */
     /* background-color: #7dbba9 !important; */
-    background-color: #15972824 !important;
+    background-image: linear-gradient(to top, #c1dfc4 0%, #deecdd 100%) !important;
 
 }
+/* .sapUiBody {
+    background-attachment: scroll !important;
+} */
 .customText {
     padding: 20px; 
     text-align: center; 
@@ -25,6 +28,10 @@
 .sapMBarTitleAlignAuto .sapMBarPH {
     /* background-color: rgba(255, 255, 255, 0.3);  */
     backdrop-filter: blur(1px);
+    /* justify-content: center !important; */
+}
+.sapMTitleStyleAuto {
+    color: #125c1d !important;
 }
 
 .pokemon-grid {

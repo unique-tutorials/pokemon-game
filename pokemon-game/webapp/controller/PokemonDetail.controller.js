@@ -21,16 +21,19 @@ sap.ui.define([
             oGameTimer.attachResumeGame(this._enableCards.bind(this));
             oGameTimer.attachEvent("restartGame", this._onRestartGame.bind(this));
         },
-         setDifficulty: function (difficulty) {
+        setDifficulty: function (difficulty) {
             var container = document.querySelector('.smod-ux-detail-container');
             if (container) {
+                container.classList.remove('hard', 'medium');
+        
                 if (difficulty === 'hard') {
                     container.classList.add('hard');
-                } else {
-                    container.classList.remove('hard');
+                } else if (difficulty === 'medium') {
+                    container.classList.add('medium');
                 }
             }
         },
+        
         _onRestartGame: function (oEvent) {
             var oSource = oEvent.getSource(); 
             MessageToast.show("Game is restarting");
@@ -47,11 +50,11 @@ sap.ui.define([
                 
         _resetCards: function (difficulty) {
             var oModel = this.getView().getModel("pokemon");
+
         
             oModel.setProperty("/currentDifficulty", difficulty);
             
             this.getView().byId("gameTimer").startTimer();
-
 
             oModel.setProperty("/selectedCards", []);
         
@@ -83,25 +86,19 @@ sap.ui.define([
         },
 
         _onRouteMatched: function (oEvent) {
-        
-            // Sayfa yüklendiğinde verileri sıfırlayın
             var oModel = this.getOwnerComponent().getModel("pokemon");
           
-            // Tüm gerekli verileri temizleyin
             oModel.setProperty("/selectedCards", []);
             oModel.setProperty("/currentDifficulty", null);
             
-            // Oyun tahtasındaki kartları temizleyin
             var gameArea = this.byId("pokemonBoard");
             if (gameArea) {
                 gameArea.removeAllItems();
               
             }
             
-            // Timer'ı sıfırlayın
             this._initializeTimer();
           
-            // Difficulty parametresini alıp, başlangıç ayarlarını yapın
             var difficulty = oEvent.getParameter("arguments").difficulty;
             this.setDifficulty(difficulty); 
             this.getView().setModel(oModel); 
@@ -112,7 +109,7 @@ sap.ui.define([
         _initializeTimer: function () {
             this.getView().byId("gameTimer").setHours(0); 
             this.getView().byId("gameTimer").setMinutes(0); 
-            this.getView().byId("gameTimer").setSeconds(0); 
+            this.getView().byId("gameTimer").setSeconds(0);
         },
 
         _startGame: function (difficulty) {
@@ -121,7 +118,6 @@ sap.ui.define([
                 this.getView().getModel("pokemon").setProperty("/currentDifficulty", difficulty);
             }
 
-            // this.getView().byId("pokemonBoard").removeAllItems();
             var gameArea = this.byId("pokemonBoard");
             gameArea.removeAllItems();
         
@@ -155,7 +151,8 @@ sap.ui.define([
             while (oBoard.getItems().length > 0) {
                 oBoard.removeItem(oBoard.getItems()[0]);
             }
-            oBoard.destroyItems();  
+            var oContainer = this.byId("pokemonBoard");
+            this.getView().invalidate(); 
         
             console.log("Oyun başladığında Seçilen Pokémonlar:", selectedPokemons);
       
@@ -172,9 +169,8 @@ sap.ui.define([
                 });
         
                 oBoard.addItem(oCard);
-
+                this.getView().rerender();
             });
-            
         },
         _onCardClick: function (pokemon, oEvent) {
           
@@ -289,8 +285,6 @@ sap.ui.define([
             oDialog.open();
         },
         
-        
-        
         formatTime: function (hours, minutes, seconds) {
             return this.pad2Digits(hours) + ":" + this.pad2Digits(minutes) + ":" + this.pad2Digits(seconds);
         },
@@ -298,7 +292,6 @@ sap.ui.define([
         pad2Digits: function (n) {
             return n.toString().padStart(2, "0");
         },
-        
 
     });
 });

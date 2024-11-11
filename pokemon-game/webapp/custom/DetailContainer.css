@@ -30,3 +30,12 @@
 .smod-ux-detail-container.hard {
     height: auto !important;
 }
+.smod-ux-detail-container.medium {
+    height: auto !important;
+}
+.customDetailContainerClass {
+    overflow-y: auto; 
+    overflow-x: hidden; 
+    height: 100%;
+}
+

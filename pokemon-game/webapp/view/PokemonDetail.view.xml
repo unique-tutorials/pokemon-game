@@ -3,9 +3,9 @@
     xmlns="sap.m"
     xmlns:custom="com.pokemon.ux.pokemongame.custom">
 
-    <Page showNavButton="true" id="page" title="{i18n>title}" class="lmsMainPageDetail sapUiResponsiveContentPadding" navButtonPress=".onNavBack">
+    <Page showNavButton="true" id="page" title="{i18n>title}" class="lmsMainPageDetail sapUiResponsiveContentPadding button-nav customDetailContainerClass" navButtonPress=".onNavBack">
         <content>
-               <custom:DetailContainer>
+               <custom:DetailContainer >
                    <custom:items>
                     <custom:CTimer id="gameTimer"  />
                     <custom:Board id="pokemonBoard" class="sapUiSmallMargin" visible="false"/>
