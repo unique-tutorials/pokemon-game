@@ -5,7 +5,7 @@
 
     <Page showNavButton="true" id="page" title="{i18n>title}" class="lmsMainPageDetail sapUiResponsiveContentPadding button-nav customDetailContainerClass" navButtonPress=".onNavBack">
         <content>
-               <custom:DetailContainer >
+               <custom:DetailContainer id="smodUxDetailContainer">
                    <custom:items>
                     <custom:CTimer id="gameTimer"  />
                     <custom:Board id="pokemonBoard" class="sapUiSmallMargin" visible="false"/>

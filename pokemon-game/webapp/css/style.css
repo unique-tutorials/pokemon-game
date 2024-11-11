@@ -12,28 +12,49 @@
     font-weight: bold;
     width: 100%; 
 }
-.sapMPageHeader {
-    /* background: url(../images/container_bg.png) center !important; */
-    /* background-color: #7dbba9 !important; */
-    background-image: linear-gradient(to top, #c1dfc4 0%, #deecdd 100%) !important;
 
+#shell-header {display: none !important;}
+.sapMBarPH.sapMBarContainer {
+    background: #71757100 url(../images/container_bg.png);
 }
-/* .sapUiBody {
-    background-attachment: scroll !important;
-} */
+
 .customText {
     padding: 20px; 
     text-align: center; 
 }
+.sapMIBar.sapMHeader-CTX {
+    /* background-color: #426f60b8 !important; */
+    background-color: #667570b8 !important;
+}
+.sapUiSizeCompact .sapMBarLeft {
+    padding: 0 !important;
+}
+.sapUiSizeCompact .sapMPageHeader .sapMIBar .sapMBarLeft {
+    height: 3.1rem !important;
+}
+.sapMBar .sapMBarLeft.sapMBarContainer>*:first-child:last-child {
+    height: 3.1rem !important;
+    background: #313131 !important;
+}
+.sapMBtn:hover:not(.sapMBtnDisabled):not(.sapMSBActive)>.sapMBtnHoverable:not(.sapMBtnDisabled):not(.sapMBtnActive):not(.sapMToggleBtnPressed):not(.sapMBtnTransparent).sapMBtnBack .sapUiIcon {
+    color: aliceblue !important;
+}
+.sapMBtn:hover>.sapMBtnBack.sapMBtnHoverable {
+    background-color: transparent !important;
+}
 .sapMBarTitleAlignAuto .sapMBarPH {
-    /* background-color: rgba(255, 255, 255, 0.3);  */
-    backdrop-filter: blur(1px);
-    /* justify-content: center !important; */
+    backdrop-filter: blur(10px);
+    justify-content: center !important;
 }
 .sapMTitleStyleAuto {
-    color: #125c1d !important;
+    color: #313131 !important;
+    font-family: 'Pokemon Solid', sans-serif !important;
+    font-size: 23px;
+    height: -webkit-fill-available;
 }
-
+.sapUiSizeCompact .sapMPageHeader .sapMIBar .sapMBarPH {
+    height: 3.1rem !important;
+}
 .pokemon-grid {
     display: grid;
     gap: 10px;
